@@ -47,7 +47,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/icons/icons/home.svg);</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Home</string>

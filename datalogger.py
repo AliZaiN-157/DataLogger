@@ -2,6 +2,8 @@ from PyQt5.QtWidgets import *
 from PyQt5 import uic
 from PyQt5.QtCore import *
 from PyQt5 import QtWidgets
+import resources_rc
+
 
 import database
 db = database.DB()
@@ -19,7 +21,7 @@ class MainWindow(QMainWindow):
 
     def update_data(self):
         Humidity_query = """option v = {timeRangeStart: -1h, timeRangeStop: now()}
-                from(bucket: "DEV")
+                from(bucket: "TEST")
                 |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
                 |> filter(fn: (r) => r["_measurement"] == "SENSOR_DATA")
                 |> filter(fn: (r) => r["DATA"] == "BME")
@@ -27,7 +29,7 @@ class MainWindow(QMainWindow):
                 |> filter(fn: (r) => r["_field"] == "Humidity")
             """
         Temperature_query = """option v = {timeRangeStart: -1h, timeRangeStop: now()}
-                from(bucket: "DEV")
+                from(bucket: "TEST")
                 |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
                 |> filter(fn: (r) => r["_measurement"] == "SENSOR_DATA")
                 |> filter(fn: (r) => r["DATA"] == "BME")
@@ -35,7 +37,7 @@ class MainWindow(QMainWindow):
                 |> filter(fn: (r) => r["_field"] == "Temperature")
             """
         Humidity_setpoint_query = """option v = {timeRangeStart: -1h, timeRangeStop: now()}
-                from(bucket: "DEV")
+                from(bucket: "TEST")
                 |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
                 |> filter(fn: (r) => r["_measurement"] == "SENSOR_DATA")
                 |> filter(fn: (r) => r["DATA"] == "BME")
@@ -44,7 +46,7 @@ class MainWindow(QMainWindow):
 
             """
         Temperature_setpoint_query = """option v = {timeRangeStart: -1h, timeRangeStop: now()}
-                from(bucket: "DEV")
+                from(bucket: "TEST")
                 |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
                 |> filter(fn: (r) => r["_measurement"] == "SENSOR_DATA")
                 |> filter(fn: (r) => r["DATA"] == "BME")

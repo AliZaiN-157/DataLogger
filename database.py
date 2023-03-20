@@ -20,7 +20,7 @@ class DB():
 def main():
     db = DB()
     Humidity_query = """option v = {timeRangeStart: -1h, timeRangeStop: now()}
-                from(bucket: "DEV")
+                from(bucket: "TEST")
                 |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
                 |> filter(fn: (r) => r["_measurement"] == "SENSOR_DATA")
                 |> filter(fn: (r) => r["DATA"] == "BME")
