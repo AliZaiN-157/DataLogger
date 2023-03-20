@@ -21,7 +21,7 @@ class MainWindow(QMainWindow):
 
     def update_data(self):
         Humidity_query = """option v = {timeRangeStart: -1h, timeRangeStop: now()}
-                from(bucket: "TEST")
+                from(bucket: "DEV")
                 |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
                 |> filter(fn: (r) => r["_measurement"] == "SENSOR_DATA")
                 |> filter(fn: (r) => r["DATA"] == "BME")
@@ -29,7 +29,7 @@ class MainWindow(QMainWindow):
                 |> filter(fn: (r) => r["_field"] == "Humidity")
             """
         Temperature_query = """option v = {timeRangeStart: -1h, timeRangeStop: now()}
-                from(bucket: "TEST")
+                from(bucket: "DEV")
                 |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
                 |> filter(fn: (r) => r["_measurement"] == "SENSOR_DATA")
                 |> filter(fn: (r) => r["DATA"] == "BME")
@@ -37,7 +37,7 @@ class MainWindow(QMainWindow):
                 |> filter(fn: (r) => r["_field"] == "Temperature")
             """
         Humidity_setpoint_query = """option v = {timeRangeStart: -1h, timeRangeStop: now()}
-                from(bucket: "TEST")
+                from(bucket: "DEV")
                 |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
                 |> filter(fn: (r) => r["_measurement"] == "SENSOR_DATA")
                 |> filter(fn: (r) => r["DATA"] == "BME")
@@ -46,7 +46,7 @@ class MainWindow(QMainWindow):
 
             """
         Temperature_setpoint_query = """option v = {timeRangeStart: -1h, timeRangeStop: now()}
-                from(bucket: "TEST")
+                from(bucket: "DEV")
                 |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
                 |> filter(fn: (r) => r["_measurement"] == "SENSOR_DATA")
                 |> filter(fn: (r) => r["DATA"] == "BME")
@@ -71,8 +71,8 @@ class MainWindow(QMainWindow):
         temperature_setpoint_stab1 = db.query(Temperature_setpoint_query)
         for table in temperature_setpoint_stab1:
             for record in table.records:
-                self.max_tmp_1.setText(str(record.values.get('_value')+5))
-                self.min_tmp_1.setText(str(record.values.get('_value')-5))
+                self.max_tmp_1.setText(str(record.values.get('_value')+2))
+                self.min_tmp_1.setText(str(record.values.get('_value')-2))
 
 class DataTable(QMainWindow):
     def __init__(self):
