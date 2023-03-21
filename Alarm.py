@@ -25,10 +25,14 @@ class Alarm(QMainWindow):
        
         self.show()
 
-        data=[{"id":1,"device":"Stab_1","alarm":"High Temperature","time":"2020-01-01 12:00:00"}]
+        self.data=[]
+
+    def call_Alert(self, id, device, alarm, time):
+        # {"id":1,"device":"Stab_1","alarm":"High Temperature","time":"2020-01-01 12:00:00"}
+        self.data.append({"id":id,"device":device,"alarm":alarm,"time":time})
         row=0
-        self.AlarmTable.setRowCount(len(data))
-        for i in data:
+        self.AlarmTable.setRowCount(len(self.data))
+        for i in self.data:
             self.AlarmTable.setItem(row, 0, QTableWidgetItem(str(i['id'])))
             self.AlarmTable.setItem(row, 1, QTableWidgetItem(i['device']))
             self.AlarmTable.setItem(row, 2, QTableWidgetItem(i['alarm']))

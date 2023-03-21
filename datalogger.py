@@ -3,7 +3,8 @@ from PyQt5 import uic, QtWidgets , QtGui
 from PyQt5.QtCore import *
 import resources_rc
 
-
+from Alarm import Alarm
+alert = Alarm()
 
 from database import DB
 db = DB()
@@ -122,11 +123,13 @@ class MainWindow(QMainWindow):
                             "{"
                                 "background-color: red;"
                             "}")
+                    alert.call_Alert(1,"STAB_1","High Humidity", record.values.get('_time').time())
                 elif (self.Stab1_Humd_4.value() < record.values.get('_value')-5):
                     self.Stab1_Humd_4.setStyleSheet("QProgressBar::chunk "
                         "{"
                             "background-color: yellow;"
                         "}")
+                    alert.call_Alert(1,"STAB_1","Low Humidity", record.values.get('_time').time())
                 else:
                     self.Stab1_Humd_4.setStyleSheet("QProgressBar::chunk "
                         "{"
@@ -142,11 +145,13 @@ class MainWindow(QMainWindow):
                             "{"
                                 "background-color: red;"
                             "}")
+                    alert.call_Alert(1,"STAB_1","High Temperature", record.values.get('_time').time())
                 elif (self.Stab1_Temp_4.value() < record.values.get('_value')-2):
                     self.Stab1_Temp_4.setStyleSheet("QProgressBar::chunk "
                         "{"
                             "background-color: yellow;"
                         "}")
+                    alert.call_Alert(1,"STAB_1","Low Temperature", record.values.get('_time').time())
                 else:
                     self.Stab1_Temp_4.setStyleSheet("QProgressBar::chunk "
                         "{"
@@ -159,9 +164,7 @@ class MainWindow(QMainWindow):
 
 def main():
     app = QApplication([])
-    widget = QtWidgets.QStackedWidget()
     window = MainWindow()
-    widget.addWidget(MainWindow())
     window.show()
     app.exec_()
 
