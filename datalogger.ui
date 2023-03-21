@@ -179,6 +179,9 @@
      <property name="value">
       <number>50</number>
      </property>
+     <property name="textVisible">
+      <bool>false</bool>
+     </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -221,6 +224,9 @@
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+     <property name="textVisible">
+      <bool>false</bool>
      </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -1363,7 +1369,7 @@ image: url(:/background/istockphoto-1264634979-612x612.png);</string>
     <zorder>stab1_temp_13</zorder>
     <zorder>stab1_temp_14</zorder>
    </widget>
-   <widget class="QPushButton" name="Stab1_button_2">
+   <widget class="QPushButton" name="Stab4_button">
     <property name="geometry">
      <rect>
       <x>16</x>
@@ -1386,7 +1392,7 @@ image: url(:/background/istockphoto-1264634979-612x612.png);</string>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="Stab1_button_3">
+   <widget class="QPushButton" name="Stab3_button">
     <property name="geometry">
      <rect>
       <x>16</x>
@@ -1409,7 +1415,7 @@ image: url(:/background/istockphoto-1264634979-612x612.png);</string>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="Stab1_button_4">
+   <widget class="QPushButton" name="Stab2_button">
     <property name="geometry">
      <rect>
       <x>16</x>

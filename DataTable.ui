@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>DataLogger</string>
+   <string>DataLogger | Data Panel View</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QListWidget" name="SideBar">
@@ -135,7 +135,7 @@
      <string>File View</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Stab1_button_2">
+   <widget class="QPushButton" name="Stab4_button">
     <property name="geometry">
      <rect>
       <x>16</x>
@@ -158,7 +158,7 @@
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="Stab1_button_3">
+   <widget class="QPushButton" name="Stab3_button">
     <property name="geometry">
      <rect>
       <x>16</x>
@@ -181,7 +181,7 @@
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="Stab1_button_4">
+   <widget class="QPushButton" name="Stab2_button">
     <property name="geometry">
      <rect>
       <x>16</x>
@@ -289,7 +289,7 @@
       <normaloff>:/icons/icons/chevron-left.svg</normaloff>:/icons/icons/chevron-left.svg</iconset>
     </property>
    </widget>
-   <widget class="QPushButton" name="DownlaodPDF">
+   <widget class="QPushButton" name="DownloadPDF">
     <property name="geometry">
      <rect>
       <x>726</x>
@@ -326,7 +326,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+     <string notr="true">font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>From</string>
@@ -342,7 +342,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+     <string notr="true">font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>To</string>
