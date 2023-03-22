@@ -17,31 +17,36 @@ class Alarm(QMainWindow):
         self.Stab4_button.clicked.connect(self.GotoStab4)
         self.LogoutButton.clicked.connect(self.Logout)
 
-        self.AlarmTable.setColumnWidth(0, 30)
-        self.AlarmTable.setColumnWidth(1, 100)
-        self.AlarmTable.setColumnWidth(2, 150)
-        self.AlarmTable.setColumnWidth(3, 150)
-        self.AlarmTable.setColumnWidth(4, 30)
+        # read alert.txt and show in table
+        
+
+        self.AlarmTable.setColumnWidth(0, 80)
+        self.AlarmTable.setColumnWidth(1, 150)
+        self.AlarmTable.setColumnWidth(2, 180)
+        self.AlarmTable.setColumnWidth(3, 30)
+        
        
         self.show()
-
-        self.data=[]
-
-    def call_Alert(self, id, device, alarm, time):
-        # {"id":1,"device":"Stab_1","alarm":"High Temperature","time":"2020-01-01 12:00:00"}
-        self.data.append({"id":id,"device":device,"alarm":alarm,"time":time})
+        # read data from alert.txt and show in table
+        self.data = []
+        with open('alert.txt', 'r') as f:
+            for line in f:
+                self.data.append({
+                    'device': line.split(' ')[0],
+                    'alarm': line.split(' ')[1],
+                    'time': line.split(' ')[2]
+                })
         row=0
         self.AlarmTable.setRowCount(len(self.data))
         for i in self.data:
-            self.AlarmTable.setItem(row, 0, QTableWidgetItem(str(i['id'])))
-            self.AlarmTable.setItem(row, 1, QTableWidgetItem(i['device']))
-            self.AlarmTable.setItem(row, 2, QTableWidgetItem(i['alarm']))
-            self.AlarmTable.setItem(row, 3, QTableWidgetItem(i['time']))
+            self.AlarmTable.setItem(row, 0, QTableWidgetItem(i['device']))
+            self.AlarmTable.setItem(row, 1, QTableWidgetItem(i['alarm']))
+            self.AlarmTable.setItem(row, 2, QTableWidgetItem(i['time']))
             button = QPushButton()
             button.setIcon(QtGui.QIcon(':/icons/icons/trash-2.svg'))
             # button.setIconSize(QtGui.QSize(20, 20))
             # button.clicked.connect(self.view)
-            self.AlarmTable.setCellWidget(row, 4, button)
+            self.AlarmTable.setCellWidget(row, 3, button)
             row+=1
     
     def GotoHome(self):

@@ -4,13 +4,10 @@ from PyQt5.QtCore import *
 import resources_rc
 
 from Alarm import Alarm
-alert = Alarm()
+
 
 from database import DB
 db = DB()
-
-
-
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -22,6 +19,8 @@ class MainWindow(QMainWindow):
         self.Stab3_button.clicked.connect(self.GotoStab3)
         self.Stab4_button.clicked.connect(self.GotoStab4)
         self.LogoutButton.clicked.connect(self.Logout)
+        
+
 
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_data)
@@ -71,7 +70,9 @@ class MainWindow(QMainWindow):
         self.window = Login()
         self.window.show()
 
+
     def update_data(self):
+        self.file = open("Alert.txt", "w")
         Humidity_query = """option v = {timeRangeStart: -1h, timeRangeStop: now()}
                 from(bucket: "DEV")
                 |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
@@ -79,6 +80,7 @@ class MainWindow(QMainWindow):
                 |> filter(fn: (r) => r["DATA"] == "BME")
                 |> filter(fn: (r) => r["device"] == "STAB_1")
                 |> filter(fn: (r) => r["_field"] == "Humidity")
+                |> last()
             """
         Temperature_query = """option v = {timeRangeStart: -1h, timeRangeStop: now()}
                 from(bucket: "DEV")
@@ -87,6 +89,7 @@ class MainWindow(QMainWindow):
                 |> filter(fn: (r) => r["DATA"] == "BME")
                 |> filter(fn: (r) => r["device"] == "STAB_1")
                 |> filter(fn: (r) => r["_field"] == "Temperature")
+                |> last()
             """
         Humidity_setpoint_query = """option v = {timeRangeStart: -1h, timeRangeStop: now()}
                 from(bucket: "DEV")
@@ -95,6 +98,7 @@ class MainWindow(QMainWindow):
                 |> filter(fn: (r) => r["DATA"] == "BME")
                 |> filter(fn: (r) => r["device"] == "STAB_1")
                 |> filter(fn: (r) => r["_field"] == "HUM_Setpoint")
+                |> last()
 
             """
         Temperature_setpoint_query = """option v = {timeRangeStart: -1h, timeRangeStop: now()}
@@ -104,6 +108,7 @@ class MainWindow(QMainWindow):
                 |> filter(fn: (r) => r["DATA"] == "BME")
                 |> filter(fn: (r) => r["device"] == "STAB_1")
                 |> filter(fn: (r) => r["_field"] == "TEMP_Setpoint")
+                |> last()
             """
         humidity_stab1 = db.query(Humidity_query)
         for table in humidity_stab1:
@@ -123,13 +128,16 @@ class MainWindow(QMainWindow):
                             "{"
                                 "background-color: red;"
                             "}")
-                    alert.call_Alert(1,"STAB_1","High Humidity", record.values.get('_time').time())
+                    self.file.write("STAB_1" + " " + "High-Humidity" + " " + str(record.values.get('_time').time()) + "\n")
+
+                    # alert.call_Alert(1,"STAB_1","High Humidity", str(record.values.get('_time').time()))
                 elif (self.Stab1_Humd_4.value() < record.values.get('_value')-5):
                     self.Stab1_Humd_4.setStyleSheet("QProgressBar::chunk "
                         "{"
                             "background-color: yellow;"
                         "}")
-                    alert.call_Alert(1,"STAB_1","Low Humidity", record.values.get('_time').time())
+                    self.file.write("STAB_1" + " " + "Low-Humidity" + " " + str(record.values.get('_time').time()) + "\n")
+                    # alert.call_Alert(1,"STAB_1","Low Humidity", str(record.values.get('_time').time()))
                 else:
                     self.Stab1_Humd_4.setStyleSheet("QProgressBar::chunk "
                         "{"
@@ -145,13 +153,15 @@ class MainWindow(QMainWindow):
                             "{"
                                 "background-color: red;"
                             "}")
-                    alert.call_Alert(1,"STAB_1","High Temperature", record.values.get('_time').time())
+                    self.file.write("STAB_1" + " " + "High-Temperature" + " " + str(record.values.get('_time').time()) + "\n")
+                    # alert.call_Alert(1,"STAB_1","High Temperature", str(record.values.get('_time').time()))
                 elif (self.Stab1_Temp_4.value() < record.values.get('_value')-2):
                     self.Stab1_Temp_4.setStyleSheet("QProgressBar::chunk "
                         "{"
                             "background-color: yellow;"
                         "}")
-                    alert.call_Alert(1,"STAB_1","Low Temperature", record.values.get('_time').time())
+                    self.file.write("STAB_1" + " " + "Low-Temperature" + " " + str(record.values.get('_time').time()) + "\n")
+                    # alert.call_Alert(1,"STAB_1","Low Temperature",str(record.values.get('_time').time()))
                 else:
                     self.Stab1_Temp_4.setStyleSheet("QProgressBar::chunk "
                         "{"
@@ -159,6 +169,9 @@ class MainWindow(QMainWindow):
                         "}")
                 self.max_tmp_1.setText(str(record.values.get('_value')+2))
                 self.min_tmp_1.setText(str(record.values.get('_value')-2))
+            
+        self.file.close()
+
 
 
 

@@ -69,25 +69,26 @@ class DataTable(QMainWindow):
         self.window.show()
 
     def search(self):
-        print(self.from_dateTime.dateTime().toString(Qt.ISODate))
-        from_date = self.from_dateTime.dateTime().date().toString(Qt.ISODate)
-        from_time = self.from_dateTime.dateTime().time().toString(Qt.ISODate)
-        to_date = self.to_dateTime.dateTime().date().toString(Qt.ISODate)
-        to_time = self.to_dateTime.dateTime().time().toString(Qt.ISODate)
-
+        # print(self.from_dateTime.dateTime().toString(Qt.ISODate))
+        from_date = self.from_dateTime.dateTime().toString(Qt.ISODate)
+        to_date = self.to_dateTime.dateTime().toString(Qt.ISODate)
+        # from_time = self.from_dateTime.dateTime().time().toString(Qt.ISODate)
+        # to_date = self.to_dateTime.dateTime().date().toString(Qt.ISODate)
+        # to_time = self.to_dateTime.dateTime().time().toString(Qt.ISODate)
         
-        # from_date = datetime.strptime(from_date, '%y/%m/%d %H:%M:%S')
-        # to_date = datetime.strptime(to_date, '%y/%m/%d %H:%M:%S')
-        # new_date = from_date-to_date
-        # print(new_date)
-        Humidity_query = """option v = {timeRangeStart: -1d, timeRangeStop: now()}
-                from(bucket: "DEV")
-                |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
-                |> filter(fn: (r) => r["_measurement"] == "SENSOR_DATA")
-                |> filter(fn: (r) => r["DATA"] == "BME")
-                |> filter(fn: (r) => r["device"] == "STAB_1")
-                |> filter(fn: (r) => r["_field"] == "Humidity")
-            """
+        # print("sub:",date.sub(from))
+        print(from_date+"Z")
+        print(to_date)
+        from_date = "-1d"
+        # option v = {timeRangeStart: -1d, timeRangeStop: now()}
+        Humidity_query = """ option v = {timeRangeStart: from_date, timeRangeStop: now()}
+                        from(bucket: "DEV")
+                        |> range(start:  v.timeRangeStart, stop: v.timeRangeStop)
+                        |> filter(fn: (r) => r["_measurement"] == "SENSOR_DATA")
+                        |> filter(fn: (r) => r["DATA"] == "BME")
+                        |> filter(fn: (r) => r["device"] == "STAB_1")
+                        |> filter(fn: (r) => r["_field"] == "Humidity")
+                    """
         Temperature_query = """option v = {timeRangeStart: -1d, timeRangeStop: now()}
                 from(bucket: "DEV")
                 |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
