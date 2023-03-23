@@ -16,7 +16,6 @@ class Alarm(QMainWindow):
         self.Stab3_button.clicked.connect(self.GotoStab3)
         self.Stab4_button.clicked.connect(self.GotoStab4)
         self.LogoutButton.clicked.connect(self.Logout)
-
         self.AlarmTable.setColumnWidth(0, 30)
         self.AlarmTable.setColumnWidth(1, 100)
         self.AlarmTable.setColumnWidth(2, 150)

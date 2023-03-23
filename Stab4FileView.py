@@ -2,10 +2,23 @@ from PyQt5.QtCore import QTimer, Qt
 from PyQt5.QtWidgets import *
 from PyQt5 import uic, QtGui
 import resources_rc
+import os
 
+def populate_tree_widget(parent_item, path):
+        for item in os.listdir(path):
+            full_path = os.path.join(path, item)
+            if os.path.isdir(full_path):
+                # If the item is a directory, create a new parent item and populate it recursively
+                dir_item = QTreeWidgetItem(parent_item, [item, 'Directory', '', ''])
+                populate_tree_widget(dir_item, full_path)
+            else:
+                # If the item is a file, create a new child item and set its data
+                size = os.path.getsize(full_path)
+                date_modified = os.path.getmtime(full_path)
+                file_item = QTreeWidgetItem(parent_item, [item, 'File', str(size), str(date_modified)])
 
 class Stab4FileView(QMainWindow):
-    def __init__(self):
+    def __init__(self,dir_path):
         super().__init__()
         super(Stab4FileView, self).__init__()
         uic.loadUi('Stab1.ui', self)
@@ -16,7 +29,19 @@ class Stab4FileView(QMainWindow):
         self.Stab2_button.clicked.connect(self.GotoStab2)
         self.Stab3_button.clicked.connect(self.GotoStab3)
         self.Stab4_button.clicked.connect(self.GotoStab4)
+        self.tree.setHeaderLabels(['Name', 'Type', 'Size', 'Date Modified'])
+        self.tree.setColumnWidth(0, 250)
+        self.tree.setColumnWidth(1, 100)
+        self.tree.setColumnWidth(2, 100)
+        self.tree.setColumnWidth(3, 150)
+        # Click on file to open
+        self.tree.itemDoubleClicked.connect(lambda item, column: self.open_file(item, column, dir_path))
+        populate_tree_widget(self.tree, dir_path)
         self.show()
+
+    def open_file(self, item, column, dir_path):
+        if item.childCount() == 0:
+            os.startfile(os.path.join(dir_path, '', '') + item.text(0))
     
     def GotoDataPanel(self):
         self.close()
@@ -62,6 +87,7 @@ class Stab4FileView(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication([])
-    widget = Stab4FileView()
+    dirPath = r'D:\Ahsan\DataLogger-1\STAB_4_Data'
+    widget = Stab4FileView(dirPath)
     widget.show()
     app.exec_()

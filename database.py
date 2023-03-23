@@ -19,18 +19,18 @@ class DB():
 
 def main():
     db = DB()
-    Humidity_query = """option v = {timeRangeStart: -1h, timeRangeStop: now()}
-                from(bucket: "TEST")
-                |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
-                |> filter(fn: (r) => r["_measurement"] == "SENSOR_DATA")
-                |> filter(fn: (r) => r["DATA"] == "BME")
-                |> filter(fn: (r) => r["device"] == "STAB_1")
-                |> filter(fn: (r) => r["_field"] == "Humidity")
-            """
-    tables = db.query(Humidity_query)
-    for table in tables:
-        for record in table.records:
-            print(f"{record.values.get('_field')} = {record.values.get('_value')} ")
+    # Humidity_query = """option v = {timeRangeStart: -1h, timeRangeStop: now()}
+    #             from(bucket: "TEST")
+    #             |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+    #             |> filter(fn: (r) => r["_measurement"] == "SENSOR_DATA")
+    #             |> filter(fn: (r) => r["DATA"] == "BME")
+    #             |> filter(fn: (r) => r["device"] == "STAB_1")
+    #             |> filter(fn: (r) => r["_field"] == "Humidity")
+    #         """
+    # tables = db.query(Humidity_query)
+    # for table in tables:
+    #     for record in table.records:
+    #         print(f"{record.values.get('_field')} = {record.values.get('_value')} ")
 
 if __name__ == '__main__':
     main()

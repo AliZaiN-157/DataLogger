@@ -53,7 +53,7 @@
      <string>Home</string>
     </property>
     <property name="icon">
-     <iconset resource="../../DataLogger/resources.qrc">
+     <iconset resource="resources.qrc">
       <normaloff>:/icons/icons/home.svg</normaloff>:/icons/icons/home.svg</iconset>
     </property>
    </widget>
@@ -70,7 +70,7 @@
      <string>Alarm</string>
     </property>
     <property name="icon">
-     <iconset resource="../../DataLogger/resources.qrc">
+     <iconset resource="resources.qrc">
       <normaloff>:/icons/icons/bell.svg</normaloff>:/icons/icons/bell.svg</iconset>
     </property>
    </widget>
@@ -87,7 +87,7 @@
      <string>Logout</string>
     </property>
     <property name="icon">
-     <iconset resource="../../DataLogger/resources.qrc">
+     <iconset resource="resources.qrc">
       <normaloff>:/icons/icons/log-out.svg</normaloff>:/icons/icons/log-out.svg</iconset>
     </property>
    </widget>
@@ -104,7 +104,7 @@
      <string>Stab 1</string>
     </property>
     <property name="icon">
-     <iconset resource="../../DataLogger/resources.qrc">
+     <iconset resource="resources.qrc">
       <normaloff>:/icons/icons/radio.svg</normaloff>:/icons/icons/radio.svg</iconset>
     </property>
     <property name="iconSize">
@@ -148,7 +148,7 @@
      <string>Stab 4</string>
     </property>
     <property name="icon">
-     <iconset resource="../../DataLogger/resources.qrc">
+     <iconset resource="resources.qrc">
       <normaloff>:/icons/icons/radio.svg</normaloff>:/icons/icons/radio.svg</iconset>
     </property>
     <property name="iconSize">
@@ -171,7 +171,7 @@
      <string>Stab 3</string>
     </property>
     <property name="icon">
-     <iconset resource="../../DataLogger/resources.qrc">
+     <iconset resource="resources.qrc">
       <normaloff>:/icons/icons/radio.svg</normaloff>:/icons/icons/radio.svg</iconset>
     </property>
     <property name="iconSize">
@@ -194,7 +194,7 @@
      <string>Stab 2</string>
     </property>
     <property name="icon">
-     <iconset resource="../../DataLogger/resources.qrc">
+     <iconset resource="resources.qrc">
       <normaloff>:/icons/icons/radio.svg</normaloff>:/icons/icons/radio.svg</iconset>
     </property>
     <property name="iconSize">
@@ -217,14 +217,14 @@
      <string>Data Panel</string>
     </property>
     <property name="icon">
-     <iconset resource="../../DataLogger/resources.qrc">
+     <iconset resource="resources.qrc">
       <normaloff>:/icons/icons/table.svg</normaloff>:/icons/icons/table.svg</iconset>
     </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>442</x>
       <y>80</y>
       <width>93</width>
       <height>25</height>
@@ -237,10 +237,38 @@
      <string>File View</string>
     </property>
    </widget>
+   <widget class="QTreeWidget" name="tree">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>136</y>
+      <width>721</width>
+      <height>455</height>
+     </rect>
+    </property>
+    <attribute name="headerVisible">
+     <bool>true</bool>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>Name</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Date Modified</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Type</string>
+     </property>
+    </column>
+   </widget>
   </widget>
  </widget>
  <resources>
-  <include location="../../DataLogger/resources.qrc"/>
+  <include location="resources.qrc"/>
  </resources>
  <connections/>
  <designerdata>

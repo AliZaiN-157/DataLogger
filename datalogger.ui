@@ -492,6 +492,9 @@ image: url(:/background/istockphoto-1264634979-612x612.png);</string>
      <property name="value">
       <number>50</number>
      </property>
+     <property name="textVisible">
+      <bool>false</bool>
+     </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -534,6 +537,9 @@ image: url(:/background/istockphoto-1264634979-612x612.png);</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+     <property name="textVisible">
+      <bool>false</bool>
      </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -799,6 +805,9 @@ image: url(:/background/istockphoto-1264634979-612x612.png);</string>
      <property name="value">
       <number>50</number>
      </property>
+     <property name="textVisible">
+      <bool>false</bool>
+     </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -841,6 +850,9 @@ image: url(:/background/istockphoto-1264634979-612x612.png);</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+     <property name="textVisible">
+      <bool>false</bool>
      </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -947,7 +959,7 @@ image: url(:/background/istockphoto-1264634979-612x612.png);</string>
        <string>47</string>
       </property>
      </widget>
-     <widget class="QLabel" name="maz_tmp_3">
+     <widget class="QLabel" name="max_tmp_3">
       <property name="geometry">
        <rect>
         <x>70</x>
@@ -1106,6 +1118,9 @@ image: url(:/background/istockphoto-1264634979-612x612.png);</string>
      <property name="value">
       <number>50</number>
      </property>
+     <property name="textVisible">
+      <bool>false</bool>
+     </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -1148,6 +1163,9 @@ image: url(:/background/istockphoto-1264634979-612x612.png);</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+     <property name="textVisible">
+      <bool>false</bool>
      </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -1438,6 +1456,20 @@ image: url(:/background/istockphoto-1264634979-612x612.png);</string>
      </size>
     </property>
    </widget>
+   <zorder>MainBar</zorder>
+   <zorder>SideBar</zorder>
+   <zorder>HomeButton</zorder>
+   <zorder>AlarmButton</zorder>
+   <zorder>LogoutButton</zorder>
+   <zorder>Stab1_button</zorder>
+   <zorder>FileView</zorder>
+   <zorder>widget_4</zorder>
+   <zorder>widget_5</zorder>
+   <zorder>widget_6</zorder>
+   <zorder>widget_7</zorder>
+   <zorder>Stab4_button</zorder>
+   <zorder>Stab3_button</zorder>
+   <zorder>Stab2_button</zorder>
   </widget>
  </widget>
  <resources>
